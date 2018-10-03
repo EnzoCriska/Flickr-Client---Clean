@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.UI.activity.MainActivity"
+    android:gravity="center_horizontal"
+    android:background="#729996"
+    android:padding="8dp"
+    android:orientation="vertical">
+    <Switch
+        android:id="@+id/runbackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start sevice when reboot"
+        android:textColor="#ffff"
+        android:checked="false"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
