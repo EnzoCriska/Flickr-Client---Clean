@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.example.admin.flickrclient_clean.R;
 import com.example.admin.flickrclient_clean.domain.model.Photo;
+import com.example.admin.flickrclient_clean.util.BitmapCache;
 import com.squareup.picasso.Picasso;
 
 
@@ -19,9 +20,13 @@ public class AdapterRecycle extends RecyclerView.Adapter<AdapterRecycle.ViewHold
     private IData iData;
     private OnClickPhoto onClickPhoto;
     private String TAG = "Adapter RecyclerView";
+    private BitmapCache cache;
+    private Context context;
 
-    public AdapterRecycle( OnClickPhoto onClickPhoto) {
+    public AdapterRecycle( OnClickPhoto onClickPhoto, Context context) {
         this.onClickPhoto = onClickPhoto;
+        cache = new BitmapCache(100);
+        this.context = context;
     }
 
     private int position;
@@ -53,17 +58,23 @@ public class AdapterRecycle extends RecyclerView.Adapter<AdapterRecycle.ViewHold
         }
 
         public void bindData(Photo photo) {
-            try{
-                Picasso.get()
-                        .load(photo.getUrlS())
-                        .placeholder(R.drawable.ic_image_black_24dp)
-                        .resize(Integer.parseInt(photo.getWidthS())*2,Integer.parseInt(photo.getHeightS())*2)
-                        .centerCrop()
-                        .into(mImageView);
-                mImageView.setOnClickListener(this);
-            }catch (IllegalArgumentException e){
-                Log.e("ERROR", "Path is empty");
+            String url = photo.getUrlS();
+            if (cache.hasBitmap(url)){
+                mImageView.setImageBitmap(cache.getBitmap(url));
+            }else{
+                cache.setorDownBitmap(url,context, mImageView);
             }
+//            try{
+//                Picasso.get()
+//                        .load(photo.getUrlS())
+//                        .placeholder(R.drawable.ic_image_black_24dp)
+//                        .resize(Integer.parseInt(photo.getWidthS())*2,Integer.parseInt(photo.getHeightS())*2)
+//                        .centerCrop()
+//                        .into(mImageView);
+//                mImageView.setOnClickListener(this);
+//            }catch (IllegalArgumentException e){
+//                Log.e("ERROR", "Path is empty");
+//            }
         }
 
         @Override

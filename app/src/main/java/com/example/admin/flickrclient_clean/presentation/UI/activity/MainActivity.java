@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         oldList = new ArrayList<>();
         recyclerView = findViewById(R.id.recycler);
         aSwitch = findViewById(R.id.runbackground);
-        adapter = new AdapterRecycle(this);
+        adapter = new AdapterRecycle(this, this);
         progressBar = new ProgressDialog(this);
         mMainPresenter = Injection.getInstance().getMainPresenter(this);
         recyclerUp();

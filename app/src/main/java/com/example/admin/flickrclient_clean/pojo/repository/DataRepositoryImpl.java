@@ -1,5 +1,8 @@
 package com.example.admin.flickrclient_clean.pojo.repository;
 
+
+import android.util.Log;
+
 import com.example.admin.flickrclient_clean.domain.model.Photo;
 import com.example.admin.flickrclient_clean.domain.repository.DataRepository;
 import com.example.admin.flickrclient_clean.util.StringUtils;
@@ -60,4 +63,5 @@ public class DataRepositoryImpl implements DataRepository {
     }
         return photos;
     }
+
 }

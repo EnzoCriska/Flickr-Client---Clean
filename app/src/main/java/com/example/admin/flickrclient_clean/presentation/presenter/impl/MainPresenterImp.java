@@ -72,7 +72,6 @@ public class MainPresenterImp extends AbstractPresenter implements MainPresenter
                 mExecutor, mMainThread, this, mDataRepository);
         interactor.execute();
     }
-
     @Override
     public void clickNotify(Context context) {
         NotifyRepository notifyRepository;
