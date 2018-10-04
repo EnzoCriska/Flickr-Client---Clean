@@ -18,7 +18,7 @@ public class AlarmManager {
         Log.i(TAG, "get Receiver");
 
         alarmMgr.setRepeating(android.app.AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000*60,
-                1000 * 60*5, alarmIntent);
+                1000 * 60, alarmIntent);
         PreferencesManager.savePre(context, "isNotify", true);
     }
 

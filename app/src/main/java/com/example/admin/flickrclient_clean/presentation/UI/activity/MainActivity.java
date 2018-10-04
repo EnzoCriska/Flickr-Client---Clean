@@ -12,6 +12,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -58,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
             oldList.clear();
             adapter.notifyDataSetChanged();
         }
+        aSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMainPresenter.clickNotify(MainActivity.this);
+            }
+        });
         super.onResume();
     }
 
@@ -118,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter.Vie
         view.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                mMainPresenter.getPhotoFromApi(Constant.buildUrl(Constant.METHOD, null, null, null));
                 adapter.notifyDataSetChanged();
                 return true;
             }

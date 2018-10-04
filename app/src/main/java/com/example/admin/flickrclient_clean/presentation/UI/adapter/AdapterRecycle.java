@@ -59,22 +59,22 @@ public class AdapterRecycle extends RecyclerView.Adapter<AdapterRecycle.ViewHold
 
         public void bindData(Photo photo) {
             String url = photo.getUrlS();
-            if (cache.hasBitmap(url)){
-                mImageView.setImageBitmap(cache.getBitmap(url));
-            }else{
-                cache.setorDownBitmap(url,context, mImageView);
-            }
-//            try{
-//                Picasso.get()
-//                        .load(photo.getUrlS())
-//                        .placeholder(R.drawable.ic_image_black_24dp)
-//                        .resize(Integer.parseInt(photo.getWidthS())*2,Integer.parseInt(photo.getHeightS())*2)
-//                        .centerCrop()
-//                        .into(mImageView);
-//                mImageView.setOnClickListener(this);
-//            }catch (IllegalArgumentException e){
-//                Log.e("ERROR", "Path is empty");
+//            if (cache.hasBitmap(url)){
+//                mImageView.setImageBitmap(cache.getBitmap(url));
+//            }else{
+//                cache.setorDownBitmap(url,context, mImageView);
 //            }
+            try{
+                Picasso.get()
+                        .load(photo.getUrlS())
+                        .placeholder(R.drawable.ic_image_black_24dp)
+                        .resize(Integer.parseInt(photo.getWidthS())*2,Integer.parseInt(photo.getHeightS())*2)
+                        .centerCrop()
+                        .into(mImageView);
+                mImageView.setOnClickListener(this);
+            }catch (IllegalArgumentException e){
+                Log.e("ERROR", "Path is empty");
+            }
         }
 
         @Override
